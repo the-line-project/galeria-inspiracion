@@ -227,6 +227,21 @@
     white-space:pre-wrap;
   }
 
+  .format-info{padding:0 16px 14px;}
+  .format-name{
+    font-family:'Anton',sans-serif;
+    color:var(--white);
+    font-size:0.95rem;
+    text-transform:uppercase;
+    letter-spacing:0.3px;
+    margin-bottom:5px;
+  }
+  .format-desc{
+    color:var(--gray);
+    font-size:0.8rem;
+    line-height:1.45;
+  }
+
   .empty-state{
     max-width:520px;
     margin:40px auto;
@@ -295,14 +310,27 @@
         "https://www.instagram.com/reel/DbSUBltKWHr/",
         "https://www.instagram.com/reel/DXu3edyiPfb/",
         "https://www.instagram.com/reel/DdERsHDNXPQ/",
-        "https://www.instagram.com/reel/Dc7S584Bnoq/"
+        "https://www.instagram.com/reel/Dc7S584Bnoq/",
+        "https://www.instagram.com/reels/Daocr1ZpqXZ/",
+        "https://www.instagram.com/reels/Dc9nDf4OQKL/"
       ]
     },
     nicho: {
       label: 'Nicho',
       desc: 'Formatos para nutrir, aportar valor y vender a tu audiencia actual.',
       type: 'reel',
-      items: []
+      items: [
+        { url: "https://www.instagram.com/reels/DaSvA7Bu3UT/", name: "Green Screen: Cámara + Pantalla", desc: "Arranca hablando a cámara con un objeto en la mano y la pantalla del compu aparece de fondo (green screen) sin cortar — ideal para explicar algo mientras mostrás la herramienta." },
+        { url: "https://www.instagram.com/reels/DcjONBDiV3Z/", name: "Hook Fórmula + POV Señalando Pantalla", desc: "Hook con fórmula visual (ícono + ícono = resultado) y corte a un POV de la mano tocando la pantalla del celu, con textos tipo 'hacé clic acá' guiando paso a paso." },
+        { url: "https://www.instagram.com/reels/DcL5BoZzh-Q/", name: "Pantalla Dividida: Demo + Reacción", desc: "Arriba se ve el resultado (una web, un producto), abajo la cara reaccionando y explicando cómo se hizo — el contraste visual sube la retención." },
+        { url: "https://www.instagram.com/reels/DYShR-kq3Z-/", name: "Infografía + Narración en Overlay", desc: "Un roadmap o infografía numerada de fondo, con la cara narrando cada paso abajo y contando con los dedos — perfecto para 'los X pasos para...'." },
+        { url: "https://www.instagram.com/reels/DcL9l1xTFbe/", name: "Pizarra en Vivo (Split Screen)", desc: "Arriba la cara explicando, abajo una mano dibujando en tiempo real un gráfico en una pizarra — se siente como una mentoría uno a uno." },
+        { url: "https://www.instagram.com/reels/DbUsnnVFakA/", name: "Hook Fórmula + POV Señalando Pantalla", desc: "Mismo recurso: hook fuerte a cámara y corte a POV de la mano operando el celular, mostrando el resultado paso a paso." },
+        { url: "https://www.instagram.com/reels/DaDMysVNpKP/", name: "Hook Fórmula + Grabación de Pantalla Completa", desc: "Hook tipo 'la IA hizo esto por mí' y corte a una grabación de pantalla completa mostrando el proceso de principio a fin." },
+        { url: "https://www.instagram.com/reels/DaG42qDI8h2/", name: "Hook Fórmula + Grabación de Pantalla Completa", desc: "Mismo recurso: hook con fórmula visual y grabación de pantalla completa demostrando el resultado." },
+        { url: "https://www.instagram.com/reels/Dad26Tovwck/", name: "Comparación con Tarjeta Flotante", desc: "Grabado en el lugar de trabajo, con una tarjeta flotante que compara dos valores (precios, resultados) señalada con el dedo — contraste directo y simple." },
+        { url: "https://www.instagram.com/reel/DdP5sFmuvMe/", name: "Reto Contrarreloj (Split Screen)", desc: "Arriba un cronómetro corriendo, abajo la pantalla grabando en vivo cómo completa la tarea antes de que se acabe el tiempo — genera tensión." }
+      ]
     },
     venta: {
       label: 'Venta',
@@ -344,6 +372,8 @@
   function buildCard(item, i, type){
     const url = typeof item === 'string' ? item : item.url;
     const prompt = typeof item === 'object' ? item.prompt : null;
+    const name = typeof item === 'object' ? item.name : null;
+    const desc = typeof item === 'object' ? item.desc : null;
     const path = igEmbedPath(url);
     const card = document.createElement('div');
     card.className = 'card';
@@ -352,6 +382,7 @@
         <span class="card-num">${String(i+1).padStart(2,'0')}</span>
         <a class="card-original" href="${url}" target="_blank" rel="noopener">Abrir original</a>
       </div>
+      ${name ? `<div class="format-info"><div class="format-name">${name}</div><div class="format-desc">${desc || ''}</div></div>` : ''}
       <div class="media">
         <div class="play"></div>
         <div class="media-label">Ver video</div>
